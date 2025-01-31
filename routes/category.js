@@ -31,6 +31,25 @@ router.get('/:id', asyncHandler(async (req, res) => {
     }
 }));
 
+
+//get the image
+router.get('/image/:imageName', asyncHandler(async (req, res) => {
+    try {
+        const imageName = req.params.imageName;
+        const imagePath = path.join(__dirname, '../public/category', imageName);
+
+        // Check if the image exists
+        if (!fs.existsSync(imagePath)) {
+            return res.status(404).json({ success: false, message: "Image not found." });
+        }
+        
+        // Send the image file
+        res.sendFile(imagePath);
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+}));
+
 // Create a new category with image upload
 router.post('/', asyncHandler(async (req, res) => { //The asyncHandler wrapper ensures that errors in async operations are handled properly without crashing the server.
     try {
