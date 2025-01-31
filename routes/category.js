@@ -48,7 +48,7 @@ router.post('/', asyncHandler(async (req, res) => { //The asyncHandler wrapper e
             const { name } = req.body;  //Retrieves the name of the category from the request body
             let imageUrl = 'no_url';
             if (req.file) { //Checks if a file was uploaded. If present, constructs the file URL using the uploaded file's filename
-                imageUrl = `http://192.169.1.100:3000/image/category/${req.file.filename}`;
+                imageUrl = `https://e-commerce-app-backend-three.vercel.app/image/category/${req.file.filename}`;
             }
             console.log('url ', req.file)
 
@@ -96,7 +96,7 @@ router.put('/:id', asyncHandler(async (req, res) => {
             let image = req.body.image;
 
             if (req.file) {
-                image = `http://192.169.1.100:3000/image/category/${req.file.filename}`;
+                image = `https://e-commerce-app-backend-three.vercel.app/image/category/${req.file.filename}`;
             }
 
             if (!name || !image) {
